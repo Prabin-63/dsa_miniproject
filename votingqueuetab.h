@@ -1,0 +1,4 @@
+#ifndef VOTINGQUEUETAB_H
+#define VOTINGQUEUETAB_H
+
+#endif // VOTINGQUEUETAB_H

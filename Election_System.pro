@@ -13,7 +13,13 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h
+    appstate.h \
+    candidatetab.h \
+    dsavisualisertab.h \
+    mainwindow.h \
+    resultstab.h \
+    votertab.h \
+    votingqueuetab.h
 
 FORMS += \
     mainwindow.ui

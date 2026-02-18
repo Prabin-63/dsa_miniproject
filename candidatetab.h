@@ -1,0 +1,4 @@
+#ifndef CANDIDATETAB_H
+#define CANDIDATETAB_H
+
+#endif // CANDIDATETAB_H

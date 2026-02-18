@@ -1,11 +1,20 @@
+#include <QApplication>
+#include <QFont>
 #include "mainwindow.h"
 
-#include <QApplication>
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
+    // Set a clean system font
+    QFont font("Segoe UI", 10);
+    font.setStyleHint(QFont::SansSerif);
+    app.setFont(font);
+
+    app.setApplicationName("Election System");
+    app.setApplicationVersion("2.0");
+    app.setOrganizationName("DSA Mini Project");
+
     MainWindow w;
     w.show();
-    return a.exec();
+    return app.exec();
 }
