@@ -9,20 +9,27 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    candidatetab.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    resultstab.cpp \
+    votertab.cpp \
+    votingqueuetab.cpp
 
 HEADERS += \
     appstate.h \
     candidatetab.h \
-    dsavisualisertab.h \
     mainwindow.h \
     resultstab.h \
     votertab.h \
     votingqueuetab.h
 
 FORMS += \
-    mainwindow.ui
+    candidatetab.ui \
+    mainwindow.ui \
+    resultstab.ui \
+    votertab.ui \
+    votingqueuetab.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

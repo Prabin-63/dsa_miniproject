@@ -9,17 +9,17 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     applyGlobalStyles();
 
-    // Seed some demo data so the app isn't blank on launch
+    // Seeded some demo data so the app isn't blank on launch,
     m_state->seedDemo();
 
-    // ── Create each tab, passing the shared AppState ──────────
+    // Created each tab, passing the shared AppState
     m_candidateTab   = new CandidateTab(m_state,   this);
     m_voterTab       = new VoterTab(m_state,        this);
     m_votingQueueTab = new VotingQueueTab(m_state,  this);
     m_resultsTab     = new ResultsTab(m_state,      this);
     m_dsaTab         = new DsaVisualizerTab(m_state, this);
 
-    // ── Add tabs to the QTabWidget from mainwindow.ui ─────────
+    // Added tabs to the QTabWidget from mainwindow.ui
     ui->tabWidget->addTab(m_candidateTab,   "🏛   Candidates");
     ui->tabWidget->addTab(m_voterTab,       "👥   Voters");
     ui->tabWidget->addTab(m_votingQueueTab, "🗳   Voting Queue");
@@ -38,17 +38,7 @@ MainWindow::~MainWindow() {
     delete m_state;
 }
 
-// ─────────────────────────────────────────────────────────────
-// Cross-tab signal wiring
-//
-//  candidatesChanged  → rebuild candidate combo in queue tab
-//                     → refresh DSA visualizer
-//  votersChanged      → refresh DSA visualizer
-//  voteProcessed      → refresh candidate table (vote counts)
-//                     → refresh voter table (mark voted)
-//                     → auto-compute results
-//                     → refresh DSA visualizer
-// ─────────────────────────────────────────────────────────────
+
 void MainWindow::wireCrossTabSignals() {
 
     // When a candidate is added/removed:
