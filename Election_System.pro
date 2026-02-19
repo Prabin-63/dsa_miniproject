@@ -19,6 +19,7 @@ SOURCES += \
 HEADERS += \
     appstate.h \
     candidatetab.h \
+    datastructures.h \
     mainwindow.h \
     resultstab.h \
     votertab.h \
