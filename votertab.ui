@@ -46,7 +46,7 @@
       <item>
        <widget class="QLineEdit" name="nameInput">
         <property name="placeholderText">
-         <string>e.g. David Lee</string>
+         <string>e.g. Narayan Wagle</string>
         </property>
        </widget>
       </item>
@@ -86,7 +86,7 @@
       <item>
        <widget class="QLabel" name="tableTitle">
         <property name="text">
-         <string>Voter Registry  (Linked List — HEAD → ... → NULL)</string>
+         <string>Voter Registry</string>
         </property>
        </widget>
       </item>

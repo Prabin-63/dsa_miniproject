@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     app.setFont(font);
 
     app.setApplicationName("Election System");
-    app.setApplicationVersion("2.0");
+    app.setApplicationVersion("1.0");
     app.setOrganizationName("DSA Mini Project");
 
     MainWindow w;

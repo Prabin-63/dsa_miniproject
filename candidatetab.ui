@@ -46,7 +46,7 @@
       <item>
        <widget class="QLineEdit" name="nameInput">
         <property name="placeholderText">
-         <string>e.g. Alice Johnson</string>
+         <string>e.g. Balendra Shah</string>
         </property>
        </widget>
       </item>
@@ -60,7 +60,7 @@
       <item>
        <widget class="QLineEdit" name="partyInput">
         <property name="placeholderText">
-         <string>e.g. Progressive Party</string>
+         <string>e.g. RSP</string>
         </property>
        </widget>
       </item>
