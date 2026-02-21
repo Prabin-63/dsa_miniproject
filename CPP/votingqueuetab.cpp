@@ -24,7 +24,7 @@ void VotingQueueTab::refreshCandidateCombo() {
             QString("[%1]  %2  —  %3").arg(n->candidateId).arg(n->name).arg(n->party),
             n->candidateId);
 }
-
+//Enqueue
 void VotingQueueTab::onEnqueueClicked() {
     int voterId = ui->voterIdSpin->value();
 
@@ -110,7 +110,7 @@ void VotingQueueTab::refreshQueueDisplay() {
 void VotingQueueTab::appendLog(const QString& msg) {
     ui->voteLog->append(msg);
 }
-
+//UI
 void VotingQueueTab::styleWidgets() {
     ui->panelTitle->setStyleSheet(
         "font-size:16px; font-weight:700; color:#E65100; "

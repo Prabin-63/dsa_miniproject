@@ -8,11 +8,7 @@
 #include <QLabel>
 #include "appstate.h"
 
-// ─────────────────────────────────────────────────────────────
-// CandidateTab
-//   UI file : candidatetab.ui
-//   DSA used: CandidateBST  (insert / remove / inOrder)
-// ─────────────────────────────────────────────────────────────
+
 namespace Ui { class CandidateTab; }
 
 class CandidateTab : public QWidget {
@@ -26,7 +22,7 @@ public:
     void refresh();
 
 signals:
-    // Emitted when BST changes so other tabs can react
+    // Used to pass BST
     void candidatesChanged();
 
 private slots:

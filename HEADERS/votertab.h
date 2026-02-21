@@ -8,11 +8,7 @@
 #include <QLabel>
 #include "appstate.h"
 
-// ─────────────────────────────────────────────────────────────
-// VoterTab
-//   UI file : votertab.ui
-//   DSA used: VoterLinkedList  (insert / remove / findById / toVector)
-// ─────────────────────────────────────────────────────────────
+//uses linked list
 namespace Ui { class VoterTab; }
 
 class VoterTab : public QWidget {

@@ -16,10 +16,10 @@ CandidateTab::CandidateTab(AppState* state, QWidget* parent)
 
 CandidateTab::~CandidateTab() { delete ui; }
 
-// ── Public refresh (called from MainWindow) ──────────────────
+
 void CandidateTab::refresh() { populateTable(); }
 
-// ── Slots ────────────────────────────────────────────────────
+
 void CandidateTab::onAddClicked() {
     QString name  = ui->nameInput->text().trimmed();
     QString party = ui->partyInput->text().trimmed();
@@ -29,7 +29,7 @@ void CandidateTab::onAddClicked() {
         return;
     }
 
-    // BST INSERT — O(log n)
+    // BST insertion
     m_state->candidateBST.insert(m_state->nextCandidateId++, name, party);
 
     ui->nameInput->clear();
@@ -47,7 +47,7 @@ void CandidateTab::onRemoveClicked() {
 
     int id = ui->candidateTable->item(row, 0)->text().toInt();
 
-    // Guard: cannot remove candidate with votes
+    //  cannot remove candidate with votes
     BSTNode* node = m_state->candidateBST.search(id);
     if (node && node->voteCount > 0) {
         QMessageBox::warning(this, "Cannot Remove",
@@ -55,7 +55,7 @@ void CandidateTab::onRemoveClicked() {
         return;
     }
 
-    // BST DELETE — O(log n)
+    // BST deletion
     m_state->candidateBST.remove(id);
     populateTable();
     emit candidatesChanged();
@@ -71,7 +71,7 @@ void CandidateTab::populateTable() {
         auto* party = new QTableWidgetItem(n->party);
         auto* votes = new QTableWidgetItem(QString::number(n->voteCount));
 
-        // Force visible colors on every row
+
         QColor bg = (n->voteCount > 0) ? QColor("#E8F5E9") : QColor("#FFFFFF");
         QColor fg = (n->voteCount > 0) ? QColor("#1B5E20") : QColor("#212121");
         for (auto* item : {id, name, party, votes}) {
@@ -87,25 +87,26 @@ void CandidateTab::populateTable() {
 }
 
 void CandidateTab::styleWidgets() {
-    // Panel titles
+
     ui->panelTitle->setStyleSheet(
         "font-size:16px; font-weight:700; color:#1A237E; "
         "padding-bottom:6px; border-bottom:2px solid #3949AB;");
     ui->tableTitle->setStyleSheet(
         "font-size:14px; font-weight:600; color:#37474F;");
 
-    // Labels
+
     for (auto* lbl : {ui->lblName, ui->lblParty})
         lbl->setStyleSheet("font-size:12px; font-weight:600; color:#455A64;");
 
-    // Inputs
+//inputstyle
     QString inputStyle = "QLineEdit { border:2px solid #B0BEC5; border-radius:8px; "
                          "padding:7px 10px; font-size:13px; background:#FAFAFA; color:#000000; }"
                          "QLineEdit:focus { border-color:#3949AB; background:#FFFFFF; color:#000000; }";
+//UI
     ui->nameInput->setStyleSheet(inputStyle);
     ui->partyInput->setStyleSheet(inputStyle);
 
-    // Buttons
+
     ui->addBtn->setStyleSheet(
         "QPushButton { background:#3949AB; color:white; border-radius:8px; "
         "padding:9px; font-size:13px; font-weight:600; }"
@@ -118,9 +119,6 @@ void CandidateTab::styleWidgets() {
         "QPushButton:pressed { background:#B71C1C; }");
 
 
-
-
-    // Count label
     ui->countLabel->setStyleSheet(
         "font-size:14px; font-weight:700; color:#FFFFFF; background:#3949AB; "
         "border-radius:8px; padding:8px;");
@@ -135,7 +133,6 @@ void CandidateTab::styleWidgets() {
         "QTableWidget::item { padding:6px; }"
         "QTableWidget::item:selected { background:#C5CAE9; color:#1A237E; }");
 
-    // Left panel frame
     ui->leftPanel->setStyleSheet(
         "QFrame { background:#FFFFFF; border-radius:12px; border:1px solid #E0E0E0; }");
     ui->rightPanel->setStyleSheet(

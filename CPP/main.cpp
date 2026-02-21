@@ -4,8 +4,6 @@
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-
-    // Set a clean system font
     QFont font("Segoe UI", 10);
     font.setStyleHint(QFont::SansSerif);
     app.setFont(font);

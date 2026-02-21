@@ -15,9 +15,9 @@ ResultsTab::~ResultsTab() { delete ui; }
 
 void ResultsTab::refresh() { onComputeClicked(); }
 
-// ── Slot ──────────────────────────────────────────────────────
+
 void ResultsTab::onComputeClicked() {
-    // Step 1: BST IN-ORDER → flat array of CandidateResult
+    // BST IN-ORDER
     QVector<CandidateResult> results;
     for (auto* n : m_state->candidateBST.inOrder())
         results.append({n->candidateId, n->name, n->party, n->voteCount});
@@ -27,7 +27,7 @@ void ResultsTab::onComputeClicked() {
         return;
     }
 
-    // Step 2: Apply chosen sorting algorithm (descending by votes)
+    //Apply chosen sorting algorithm descending by votes
     int algo = ui->algoCombo->currentIndex();
     if (algo == 0)
         SortingAlgorithms::bubbleSort(results);
@@ -36,10 +36,10 @@ void ResultsTab::onComputeClicked() {
     else
         SortingAlgorithms::mergeSort(results, 0, results.size() - 1);
 
-    // Step 3: Populate table
+    //Populate table
     populateTable(results);
 
-    // Step 4: Announce winner
+    // Announce winner
     int total = 0;
     for (auto& r : results) total += r.votes;
 
@@ -89,9 +89,8 @@ for (int i = 0; i < sorted.size(); ++i) {
     }
 }
 }
-
+//UI
 void ResultsTab::styleWidgets() {
-    // Winner banner default style
     ui->winnerLabel->setStyleSheet(
         "font-size:18px; font-weight:600; color:#78909C; "
         "background:#ECEFF1; border-radius:10px; padding:12px;");

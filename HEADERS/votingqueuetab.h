@@ -10,13 +10,7 @@
 #include <QTextEdit>
 #include "appstate.h"
 
-// ─────────────────────────────────────────────────────────────
-// VotingQueueTab
-//   UI file : votingqueuetab.ui
-//   DSA used: VotingQueue (enqueue / dequeue / peek)
-//             VoterLinkedList.findById — mark voter as voted
-//             CandidateBST.addVote    — increment vote count
-// ─────────────────────────────────────────────────────────────
+//uses queue
 namespace Ui { class VotingQueueTab; }
 
 class VotingQueueTab : public QWidget {
@@ -26,11 +20,10 @@ public:
     explicit VotingQueueTab(AppState* state, QWidget* parent = nullptr);
     ~VotingQueueTab();
 
-    // Rebuild candidate combo after candidate list changes
     void refreshCandidateCombo();
 
 signals:
-    // Emitted after a vote is fully processed
+
     void voteProcessed();
 
 private slots:

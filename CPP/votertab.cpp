@@ -17,8 +17,6 @@ VoterTab::VoterTab(AppState* state, QWidget* parent)
 VoterTab::~VoterTab() { delete ui; }
 
 void VoterTab::refresh() { populateTable(); }
-
-// ── Slots ─────────────────────────────────────────────────────
 void VoterTab::onAddClicked() {
     QString name = ui->nameInput->text().trimmed();
     if (name.isEmpty()) {
@@ -26,7 +24,7 @@ void VoterTab::onAddClicked() {
         return;
     }
 
-    // LINKED LIST INSERT — appends to end: O(n)
+    //Linked list insertion
     m_state->voterList.insert(m_state->nextVoterId++, name);
 
     ui->nameInput->clear();
@@ -43,7 +41,7 @@ void VoterTab::onRemoveClicked() {
 
     int id = ui->voterTable->item(row, 0)->text().toInt();
 
-    // LINKED LIST SEARCH — O(n)
+    // Linked list search
     VoterNode* vn = m_state->voterList.findById(id);
     if (vn && vn->hasVoted) {
         QMessageBox::warning(this, "Cannot Remove",
@@ -51,15 +49,15 @@ void VoterTab::onRemoveClicked() {
         return;
     }
 
-    // LINKED LIST DELETE — O(n)
+    // Linked list deletion
     m_state->voterList.deleteById(id);
     populateTable();
     emit votersChanged();
 }
 
-// ── Helpers ───────────────────────────────────────────────────
+
 void VoterTab::populateTable() {
-    // LINKED LIST TRAVERSE — O(n)
+//linked list traversal
     QVector<VoterNode*> voters = m_state->voterList.toVector();
 
     ui->voterTable->setRowCount(voters.size());
@@ -82,7 +80,7 @@ void VoterTab::populateTable() {
 
     ui->countLabel->setText(QString("Total Voters: %1").arg(voters.size()));
 }
-
+//UI
 void VoterTab::styleWidgets() {
     ui->panelTitle->setStyleSheet(
         "font-size:16px; font-weight:700; color:#1B5E20; "

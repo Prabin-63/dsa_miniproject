@@ -3,30 +3,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++17
 CONFIG += sdk_no_version_check
 macx: QMAKE_LFLAGS += -Wl,-w,-undefined,dynamic_lookup
-SOURCES += \
-    candidatetab.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    resultstab.cpp \
-    votertab.cpp \
-    votingqueuetab.cpp
 
-HEADERS += \
-    appstate.h \
-    candidatetab.h \
-    datastructures.h \
-    mainwindow.h \
-    resultstab.h \
-    votertab.h \
-    votingqueuetab.h
+INCLUDEPATH += HEADERS
 
-FORMS += \
-    candidatetab.ui \
-    mainwindow.ui \
-    resultstab.ui \
-    votertab.ui \
-    votingqueuetab.ui
-
+SOURCES += $$files(CPP/*.cpp)
+HEADERS += $$files(HEADERS/*.h)
+FORMS += $$files(UI/*.ui)
 # Fix for macOS - suppress AGL framework
 macx {
     QMAKE_LFLAGS += -Wl,-w

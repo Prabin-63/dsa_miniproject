@@ -9,23 +9,19 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     applyGlobalStyles();
 
-    // Seed some demo data so the app isn't blank on launch
+    // demo seed
     m_state->seedDemo();
 
-    // ── Create each tab, passing the shared AppState ──────────
     m_candidateTab   = new CandidateTab(m_state,   this);
     m_voterTab       = new VoterTab(m_state,        this);
     m_votingQueueTab = new VotingQueueTab(m_state,  this);
     m_resultsTab     = new ResultsTab(m_state,      this);
 
 
-    // ── Add tabs to the QTabWidget from mainwindow.ui ─────────
     ui->tabWidget->addTab(m_candidateTab,   "🏛   Candidates");
     ui->tabWidget->addTab(m_voterTab,       "👥   Voters");
     ui->tabWidget->addTab(m_votingQueueTab, "🗳   Voting Queue");
     ui->tabWidget->addTab(m_resultsTab,     "📊   Results");
-
-    // ── Wire signals so tabs stay in sync ─────────────────────
     wireCrossTabSignals();
 
 }
@@ -39,20 +35,20 @@ MainWindow::~MainWindow() {
 
 void MainWindow::wireCrossTabSignals() {
 
-    // When a candidate is added/removed:
+    // When a candidate is added/removed
     connect(m_candidateTab, &CandidateTab::candidatesChanged, this, [this]() {
         m_votingQueueTab->refreshCandidateCombo();  // keep combo up to date
 
         ui->statusBar->showMessage("Candidate list updated.");
     });
 
-    // When a voter is added/removed:
+    // When a voter is added/removed
     connect(m_voterTab, &VoterTab::votersChanged, this, [this]() {
 
         ui->statusBar->showMessage("Voter registry updated.");
     });
 
-    // When a vote is processed:
+    // When a vote is processed
     connect(m_votingQueueTab, &VotingQueueTab::voteProcessed, this, [this]() {
         m_candidateTab->refresh();           // update vote counts column
         m_voterTab->refresh();               // mark voter as voted
@@ -62,7 +58,6 @@ void MainWindow::wireCrossTabSignals() {
     });
 }
 void MainWindow::applyGlobalStyles() {
-    // Header bar
     ui->headerBar->setStyleSheet(
         "QFrame { background:qlineargradient(x1:0,y1:0,x2:1,y2:0,"
         "  stop:0 #1A237E, stop:1 #283593); }");
@@ -71,7 +66,7 @@ void MainWindow::applyGlobalStyles() {
     ui->appSubtitle->setStyleSheet(
         "font-size:12px; color:#9FA8DA; margin-left:16px;");
 
-    // Tab bar
+
     ui->tabWidget->setStyleSheet(
         "QTabWidget::pane { border:none; background:#F5F6FA; }"
         "QTabBar::tab {"
@@ -84,11 +79,11 @@ void MainWindow::applyGlobalStyles() {
         "QTabBar::tab:hover:!selected {"
         "  background:#E8EAF6; color:#3949AB; }");
 
-    // Status bar
+
     ui->statusBar->setStyleSheet(
         "QStatusBar { background:#ECEFF1; color:#546E7A; font-size:12px; padding:4px; }");
 
-    // Global styles — ONE call only, combining everything
+
     setStyleSheet(
         "QMainWindow { background:#F5F6FA; }"
         "QTableWidget { background:#FFFFFF; color:#212121; }"
