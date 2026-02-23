@@ -27,6 +27,7 @@ Makefile*
 *.prl
 *.app
 moc_*.cpp
+moc_*.h
 ui_*.h
 qrc_*.cpp
 Thumbs.db
@@ -34,7 +35,7 @@ Thumbs.db
 *.rc
 /.qmake.cache
 /.qmake.stash
-
+/moc_predefs.h
 # qtcreator generated files
 *.pro.user*
 *.qbs.user*
